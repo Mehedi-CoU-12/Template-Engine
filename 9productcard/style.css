@@ -1,0 +1,24 @@
+body {
+    font-family: Arial;
+    padding: 20px;
+}
+.product-grid {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+.card {
+    border: 1px solid #ddd;
+    padding: 15px;
+    width: 200px;
+    border-radius: 10px;
+    text-align: center;
+}
+.in-stock {
+    color: green;
+    font-weight: bold;
+}
+.out-of-stock {
+    color: red;
+    font-weight: bold;
+}

@@ -1,0 +1,20 @@
+{
+  "products": [
+    {
+      "id": 1,
+      "name": "Wireless Headphones",
+      "price": 59.99388484,
+      "inStock": true,
+      "rating": 4.5,
+      "image": "https://www.startech.com.bd/image/cache/catalog/headphone/sony/wh-1000xm6/wh-1000xm6-01-500x500.webp"
+    },
+    {
+      "id": 2,
+      "name": "Bluetooth Speaker",
+      "price": 39.99202939,
+      "inStock": false,
+      "rating": 4.0,
+      "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR9cYWSaBNIhOPF2gguIun1olGtIYrHAlOO7w&s"
+    }
+  ]
+}
