@@ -14,10 +14,17 @@ const PORT = 4000;
 const app = express();
 
 //handlebars
-app.engine("handlebars", engine());
-app.set("view engine", "handlebars");
-app.set("views", path.join(__dirname, "views"));
+app.engine(
+    "hbs",
+    engine({
+        extname: ".hbs",
+        defaultLayout: "main",
+        layoutsDir: path.join(__dirname, "views/layouts"),
+    })
+);
+app.set("view engine", "hbs");
 
+app.set("views", path.join(__dirname, "views"));
 
 //middlewares
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -109,11 +116,10 @@ Handlebars.registerHelper("userDataParser", (template, userData) => {
 });
 
 //header
-Handlebars.registerPartial("header","<header>Header</header>")
+Handlebars.registerPartial("header", "<header>Header</header>");
 
 //footer
 Handlebars.registerPartial("footer", "<footer>© 2025</footer>");
-
 
 app.get("/", (req, res) => {
     res.render("form");
