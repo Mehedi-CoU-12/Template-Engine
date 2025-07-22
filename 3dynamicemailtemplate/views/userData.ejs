@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>EJS template Engine</title>
+    </head>
+    <body>
+        <h1>User Data</h1>
+        <% user.map((user)=>{ %>
+        <ul>
+            <li><strong>name: </strong> <%=user.name %></li>
+            <li><strong>age: </strong> <%=user.age %></li>
+            <li><strong>varsity: </strong> <%=user.varsity %></li>
+        </ul>
+
+        <%}) %>
+    </body>
+</html>

@@ -1,0 +1,24 @@
+<h1>Game of Thrones Cast</h1>
+<ul>
+    {{#each characters}}
+        <li>
+            <strong>{{name}}</strong>
+            ({{house}}) — Played by
+            {{actor}}
+            — Located at
+            {{location}}
+            <br />
+            <strong>Traits:</strong>
+            <ul>
+                {{#each traits}}
+                    <li>{{this}}</li>
+                {{/each}}
+            </ul>
+            <strong>Equipment:</strong>
+            <ul>
+                <li>Weapon: {{equipment.weapon}}</li>
+                <li>Companion: {{equipment.companion}}</li>
+            </ul>
+        </li>
+    {{/each}}
+</ul>

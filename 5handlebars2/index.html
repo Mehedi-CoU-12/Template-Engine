@@ -1,0 +1,34 @@
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script>
+    </head>
+    <body>
+        <h1>handlebars</h1>
+        <script id="source" type="text/x-handlebars-template">
+            <ol>
+                {{#each characters}}
+                    <li>
+                        <div>
+                            <h3>character</h3>
+                            <p> <strong>name: </strong> {{name}} </p>
+                            <p>
+                                <strong>shortCode: </strong>
+                                {{shortCode}}
+                            </p>
+                            <p> <strong>actor: </strong> {{actor}} </p>
+                            <p> <strong>house: </strong> {{house}} </p>
+                            <p> <strong>location: </strong> {{location}} </p>
+                        </div>
+                    </li>
+                {{/each}}
+            </ol>
+        </script>
+
+        <div id="show"></div>
+
+        <script type="module" src="script.js"></script>
+    </body>
+</html>

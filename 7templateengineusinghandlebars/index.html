@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <title>Handlebars Recursive</title>
+        <script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script>
+    </head>
+    <body style="background-color: black; color: white">
+        <div id="output"></div>
+
+        <script id="recursive-template" type="text/x-handlebars-template">
+            {{> sumon this }}
+        </script>
+
+        <!-- Partial Template for Recursion -->
+        <script id="render-object" type="text/x-handlebars-template">
+            <ul>
+              {{#each this}}
+                <li>
+                  {{@key}}:
+                  {{#if (isSumon this)}}
+                    {{> sumon this }}
+                  {{else if (isMehedi this)}}
+                    <ul>
+                      {{#each this}}
+                        <li>{{this}}</li>
+                      {{/each}}
+                    </ul>
+                  {{else}}
+                    {{this}}
+                  {{/if}}
+                </li>
+              {{/each}}
+            </ul>
+        </script>
+
+        <script type="module" src="script.js"></script>
+    </body>
+</html>
