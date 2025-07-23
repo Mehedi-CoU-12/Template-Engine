@@ -1,0 +1,34 @@
+{
+    "blogs": [
+        {
+            "name": "Sumon Ahmed",
+            "topic": "Introduction to Node.js",
+            "created_time": "2025-07-23T09:00:00Z",
+            "blog": "Node.js is a runtime environment that allows you to run JavaScript on the server."
+        },
+        {
+            "name": "Sarah Khan",
+            "topic": "Understanding Express.js Middleware",
+            "created_time": "2025-07-22T14:30:00Z",
+            "blog": "Middleware in Express.js are functions that execute during the request-response cycle."
+        },
+        {
+            "name": "John Doe",
+            "topic": "REST API Basics",
+            "created_time": "2025-07-21T10:15:00Z",
+            "blog": "REST APIs use HTTP methods like GET, POST, PUT, and DELETE to perform CRUD operations."
+        },
+        {
+            "name": "Anika Rahman",
+            "topic": "Zod Schema Validation",
+            "created_time": "2025-07-20T12:45:00Z",
+            "blog": "Zod is a TypeScript-first schema validation library that's easy to integrate into Node projects."
+        },
+        {
+            "name": "Mehedi Hasan",
+            "topic": "Handlebars Templates in Express",
+            "created_time": "2025-07-19T17:00:00Z",
+            "blog": "Handlebars lets you write HTML templates with dynamic data and logic."
+        }
+    ]
+}
