@@ -1,5 +1,15 @@
 <div class="product-grid">
     {{#each products}}
-        {{> product-card}}
+        <div class="class">
+            <img src="{{this.image}}" alt="{{this.name}}" height="100px" />
+            <h2>{{this.name}}</h2>
+            <p>Price: {{this.price}}</p>
+            <p>Rating : {{this.rating}}</p>
+            {{#if this.inStock}}
+                <p class="in-stock">In Stock</p>
+            {{else}}
+                <p class="out-of-stock">Out Of Stock</p>
+            {{/if}}
+        </div>
     {{/each}}
 </div>

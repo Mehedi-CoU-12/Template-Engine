@@ -7,7 +7,6 @@ import { userSchema } from "./validation/zod.js";
 import Handlebars from "handlebars";
 import { template } from "./data.js";
 
-
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
@@ -97,7 +96,7 @@ Handlebars.registerHelper(
 //replace template's placeholder with user data
 Handlebars.registerHelper(
     "userDataParser",
-    (template: any, userData: Record<string, any>):any => {
+    (template: any, userData: Record<string, any>): any => {
         if (typeof template === "string")
             return Handlebars.helpers.stringParser(template, userData);
 
@@ -108,7 +107,7 @@ Handlebars.registerHelper(
         }
 
         if (typeof template === "object" && template !== null) {
-            let result:Record<string,any> = {};
+            let result: Record<string, any> = {};
 
             for (const key in template) {
                 result[key] = Handlebars.helpers.userDataParser(
@@ -142,7 +141,7 @@ app.post("/submit", (req: Request, res: Response) => {
     const result = userSchema.safeParse(data);
 
     if (!result.success) {
-        const errorMessages = JSON.stringify(result.error.format(), null,2);
+        const errorMessages = JSON.stringify(result.error.format(), null, 2);
         return res.send(`Invalid input:<pre>${errorMessages}</pre>`);
     }
 

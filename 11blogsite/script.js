@@ -50,26 +50,26 @@ async function formHandler() {
     };
 
     const store_data = [];
-    
+
     function formInputHandler() {
         const form = document.getElementById("blog-form");
         if (form) {
             form.addEventListener("submit", (e) => {
                 e.preventDefault();
-                
+
                 const formData = new FormData(form);
                 const inputObj = {
                     name: formData.get("name"),
                     blog: formData.get("blog"),
                     topic: formData.get("topic"),
-                    created_time:new Date()
+                    created_time: new Date(),
                 };
-                
+
                 const v = fun(tempData, inputObj);
+                
                 store_data.push(v);
 
                 render();
-
             });
         } else console.log("form nai😭");
     }

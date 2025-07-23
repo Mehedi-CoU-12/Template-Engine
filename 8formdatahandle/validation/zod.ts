@@ -16,7 +16,7 @@ export const userSchema = z.object({
         }),
     }),
     skills: z.array(
-        z.string().refine((value) => value.length>1, {
+        z.string().refine((value) => value.length > 1, {
             message: "skill length must be greater than 1",
         })
     ),
