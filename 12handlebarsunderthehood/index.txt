@@ -1,0 +1,5 @@
+{{#each people}}
+    <div>
+        {{this}} - livies  in {{lookup ../cities @index}} and studies at {{lookup ../university @index}}
+    </div>
+{{/each}}

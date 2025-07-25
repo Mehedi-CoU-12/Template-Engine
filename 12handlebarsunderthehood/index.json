@@ -1,0 +1,20 @@
+{
+  "title": "User List",
+  "users": [
+    {
+      "name": "Alice",
+      "role": "Editor",
+      "isAdmin": false
+    },
+    {
+      "name": "Bob",
+      "role": "Moderator",
+      "isAdmin": true
+    },
+    {
+      "name": "Charlie",
+      "role": "Admin",
+      "isAdmin": true
+    }
+  ]
+}
