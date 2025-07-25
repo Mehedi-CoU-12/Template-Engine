@@ -1,6 +1,0 @@
-{
-    "main": "{{> header }}\n<section id='posts'>\n  {{#each posts}}\n    {{> post }}\n  {{/each}}\n</section>\n{{> footer }}",
-    "header": "<header>\n  <h1>{{title}}</h1>",
-    "post": "<article class='post'>\n  <h2>{{title}}</h2>\n  <p class='meta'>Posted on {{ date}} by {{author}}</p>\n  <div class='content'>{{content}}</div>\n</article>",
-    "footer": "<footer>\n  <p>&copy; 2025 My Awesome Blog. All rights reserved.</p>\n</footer>"
-}
