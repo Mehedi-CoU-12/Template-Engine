@@ -1,0 +1,21 @@
+{
+  "name": "14nodejswithhbs",
+  "version": "1.0.0",
+  "description": "this is a nodejs project with template engine ",
+  "keywords": [
+    "mehedi"
+  ],
+  "license": "ISC",
+  "author": "mehedi",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon index.js"
+  },
+  "dependencies": {
+    "dotenv": "^17.2.1",
+    "express": "^5.1.0",
+    "handlebars": "^4.7.8",
+    "nodemon": "^3.1.10"
+  }
+}
