@@ -1,0 +1,41 @@
+{
+  "template": {
+    "name": "Email Template",
+    "created": "2025-07-29T06:40:34.923Z",
+    "elements": [
+      {
+        "id": "element_1",
+        "type": "text",
+        "order": 0,
+        "properties": {
+          "content": "my name is maximus",
+          "fontSize": 16,
+          "color": "#000000",
+          "fontWeight": "normal",
+          "textAlign": "left"
+        }
+      },
+      {
+        "id": "element_2",
+        "type": "image",
+        "order": 1,
+        "properties": {
+          "src": "https://via.placeholder.com/300x150",
+          "alt": "Image"
+        }
+      },
+      {
+        "id": "element_4",
+        "type": "text",
+        "order": 2,
+        "properties": {
+          "content": "Your text here",
+          "fontSize": 16,
+          "color": "#000000",
+          "fontWeight": "normal",
+          "textAlign": "left"
+        }
+      }
+    ]
+  }
+}
