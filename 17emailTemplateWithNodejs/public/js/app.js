@@ -166,6 +166,8 @@ class EmailTemplateBuilder {
                     padding: 12px 24px;
                     font-size: 16px;
                     cursor: pointer;
+                    height: 40px;
+                    width: 120px;
                 `;
                 contentDiv.appendChild(button);
                 break;
@@ -300,12 +302,24 @@ class EmailTemplateBuilder {
             "<p>Select an element to edit its properties</p>";
     }
 
+    template(value) {
+        return fetch("/js/data.json")
+            .then((res) => res.json())
+            .then((data) => {
+                const tempData = Handlebars.compile(value);
+                return tempData(data);
+            });
+    }
+
     updateProperty(elementId, property, value) {
         const element = this.elements.find((el) => el.id === elementId);
-        element.properties[property] = value;
-        this.renderCanvas();
-        this.selectElement(elementId); // Keep element selected
-        this.updateJSON();
+
+        this.template(value).then((result) => {
+            element.properties[property] = result;
+            this.renderCanvas();
+            this.selectElement(elementId); // Keep element selected
+            this.updateJSON();
+        });
     }
 
     deleteElement(elementId) {
@@ -440,11 +454,9 @@ class EmailTemplateBuilder {
     }
 }
 
-// Initialize
+// Initialize->create an object of Template engine
 let builder;
-document.addEventListener("DOMContentLoaded", () => {
-    builder = new EmailTemplateBuilder();
-});
+builder = new EmailTemplateBuilder();
 
 function closeModal() {
     builder.closeModal();
