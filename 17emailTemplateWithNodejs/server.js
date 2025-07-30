@@ -81,6 +81,22 @@ app.get("/api/templates", (req, res) => {
     res.json(files);
 });
 
+// server.js (or app.js)
+app.get("/api/user-data", (req, res) => {
+    res.render("form");
+});
+
+app.post("/api/save-user-data", (req, res) => {
+    const filePath = path.join(__dirname, "public/js", 'data.json');
+    fs.writeFileSync(filePath, JSON.stringify(req.body, null, 2));
+
+     res.json({
+        success: true,
+        message: "Template saved successfully",
+        data:req.body
+    });
+});
+
 app.listen(PORT, () => {
     console.log(`Server running on http://localhost:${PORT}`);
 });

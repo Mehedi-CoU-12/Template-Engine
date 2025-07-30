@@ -1,5 +1,14 @@
 {
-    "name":"mehedi",
-    "age":"24",
-    "skills":["js","cpp","python"]
+  "name": "Mehedi Hasan",
+  "email": "mehedihasana383@gmail.com",
+  "phone": "+8801840821435",
+  "company": "appifylab",
+  "position": "swe",
+  "skills": [
+    "js",
+    "cpp",
+    "css",
+    "html",
+    "python"
+  ]
 }

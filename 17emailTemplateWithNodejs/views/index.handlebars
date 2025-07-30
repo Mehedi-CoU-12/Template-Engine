@@ -1,7 +1,7 @@
 <div class="container">
-    <!-- Header Toolbox -->
+   
     <header class="toolbox">
-        <h1>Email Template Builder</h1>
+        <h1>{{title}}</h1>
         <div class="tools">
             <button id="add-text" class="tool-btn">
                 <span class="icon">📝</span>
@@ -15,6 +15,10 @@
                 <span class="icon">🔘</span>
                 Button
             </button>
+            <button id="user-button" class="tool-btn">
+                <span class="icon"></span>
+                Take User Input
+            </button>
         </div>
         <div class="actions">
             <button id="save-template" class="action-btn">💾 Save</button>
@@ -23,10 +27,10 @@
         </div>
     </header>
 
-    <!-- Main Content -->
+   
     <main class="main-content">
 
-        <!-- Canvas -->
+       
         <section class="canvas-section">
             <h2>Live Preview</h2>
             <div id="canvas" class="canvas">
@@ -36,7 +40,7 @@
             </div>
         </section>
 
-        <!-- Properties Panel -->
+  
         <aside class="properties-panel">
             <h2>Properties</h2>
             <div id="properties-content" class="properties-content">
@@ -44,14 +48,14 @@
             </div>
         </aside>
 
-        <!-- JSON Output -->
+       
         <aside class="json-panel">
             <h2>JSON Output</h2>
             <pre id="json-output" class="json-output">{}</pre>
         </aside>
     </main>
 
-    <!-- Modal for loading templates -->
+    
     <div id="load-modal" class="modal">
         <div class="modal-content">
             <h3>Load Template</h3>

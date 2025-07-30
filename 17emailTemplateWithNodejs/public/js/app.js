@@ -33,6 +33,9 @@ class EmailTemplateBuilder {
         document
             .getElementById("copy-json")
             .addEventListener("click", () => this.copyJSON());
+        document
+            .getElementById("user-button")
+            .addEventListener("click", () => this.getUserData());
 
         // Canvas click to deselect
         document.getElementById("canvas").addEventListener("click", (e) => {
@@ -452,9 +455,12 @@ class EmailTemplateBuilder {
             .then(() => alert("JSON copied to clipboard!"))
             .catch(() => alert("Failed to copy JSON to clipboard"));
     }
+
+    async getUserData() {
+        window.location.href = "/api/user-data";
+    }
 }
 
-// Initialize->create an object of Template engine
 let builder;
 builder = new EmailTemplateBuilder();
 
