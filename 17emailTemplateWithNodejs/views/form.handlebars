@@ -1,225 +1,95 @@
-<div class="container">
-<h1>User Data Form</h1>
-<p>Fill out the form below to save your data to the system.</p>
+<div class="form-container">
+    <h1>User Data Form</h1>
+    <p>Fill out the form below to save your data to the system.</p>
 
-<div id="data-tab" class="tab-pane">
-    <div class="data-form">
-        <div class="form-group">
-            <label>Name</label>
-            <input type="text" id="name" placeholder="Your full name" oninput="updatePreview()" />
+    <div id="data-tab" class="tab-pane">
+        <div class="data-form">
+            <div class="form-group">
+                <label>Name</label>
+                <input
+                    type="text"
+                    id="name"
+                    placeholder="Your full name"
+                    oninput="updatePreview()"
+                />
+            </div>
+
+            <div class="form-group">
+                <label>Email</label>
+                <input
+                    type="email"
+                    id="email"
+                    placeholder="your.email@example.com"
+                    oninput="updatePreview()"
+                />
+            </div>
+
+            <div class="form-group">
+                <label>Phone</label>
+                <input
+                    type="text"
+                    id="phone"
+                    placeholder="+1 (555) 123-4567"
+                    oninput="updatePreview()"
+                />
+            </div>
+
+            <div class="form-group">
+                <label>Company</label>
+                <input
+                    type="text"
+                    id="company"
+                    placeholder="Your company name"
+                    oninput="updatePreview()"
+                />
+            </div>
+
+            <div class="form-group">
+                <label>Position</label>
+                <input
+                    type="text"
+                    id="position"
+                    placeholder="Your job title"
+                    oninput="updatePreview()"
+                />
+            </div>
+
+            <div class="form-group">
+                <label>Skills (one per line)</label>
+                <textarea
+                    id="skills"
+                    rows="4"
+                    placeholder="JavaScript&#10;React&#10;Node.js&#10;Python"
+                    oninput="updatePreview()"
+                ></textarea>
+            </div>
         </div>
 
-        <div class="form-group">
-            <label>Email</label>
-            <input type="email" id="email" placeholder="your.email@example.com" oninput="updatePreview()" />
+        <div class="button-group">
+            <button
+                onclick="saveUserData()"
+                type="button"
+                class="btn btn-primary"
+            >Save Data</button>
+            <a href="/" class="btn btn-outline">Back to Template Builder</a>
         </div>
 
-        <div class="form-group">
-            <label>Phone</label>
-            <input type="text" id="phone" placeholder="+1 (555) 123-4567" oninput="updatePreview()" />
-        </div>
-
-        <div class="form-group">
-            <label>Company</label>
-            <input type="text" id="company" placeholder="Your company name" oninput="updatePreview()" />
-        </div>
-
-        <div class="form-group">
-            <label>Position</label>
-            <input type="text" id="position" placeholder="Your job title" oninput="updatePreview()" />
-        </div>
-
-        <div class="form-group">
-            <label>Skills (one per line)</label>
-            <textarea id="skills" rows="4" placeholder="JavaScript&#10;React&#10;Node.js&#10;Python"
-                oninput="updatePreview()"></textarea>
-        </div>
+        <div
+            id="success-message"
+            class="success-message"
+            style="display: none;"
+        ></div>
+        <div
+            id="error-message"
+            class="error-message"
+            style="display: none;"
+        ></div>
     </div>
 
-    <div class="button-group">
-        <button onclick="saveUserData()" type="button" class="btn btn-primary">Save Data</button>
-        <a href="/" class="btn btn-outline">Back to Template Builder</a>
-    </div>
-
-    <div id="success-message" class="success-message" style="display: none;"></div>
-    <div id="error-message" class="error-message" style="display: none;"></div>
-</div>
-
-<div class="preview-section">
-    <h3>Data Preview</h3>
-    <div id="data-preview" class="preview-data">
-        Fill out the form above to see a preview of your data...
+    <div class="preview-section">
+        <h3>Data Preview</h3>
+        <div id="data-preview" class="preview-data">
+            Fill out the form above to see a preview of your data...
+        </div>
     </div>
 </div>
-</div>
-
-<style>
-.container {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 20px;
-}
-
-.form-group {
-    margin-bottom: 20px;
-}
-
-.form-group label {
-    display: block;
-    margin-bottom:
-        5px;
-    font-weight: bold;
-    color: #555;
-}
-
-.form-group input,
-.form-group textarea {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    font-size: 14px;
-    box-sizing: border-box;
-}
-
-.form-group textarea {
-    resize: vertical;
-    font-family: 'Courier New', monospace;
-}
-
-.form-group input:focus,
-.form-group textarea:focus {
-    outline: none;
-    border-color: #007bff;
-    box-shadow: 0 0 5px rgba(0, 123, 255, 0.3);
-}
-
-.button-group {
-    text-align: center;
-    margin: 30px 0;
-}
-
-.btn {
-    padding: 12px 24px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 16px;
-    margin: 0 5px 10px 5px;
-    text-decoration: none;
-    display: inline-block;
-    transition: background-color 0.3s;
-}
-
-.btn-primary {
-    background-color:
-        #007bff;
-    color: white;
-}
-
-.btn-primary:hover {
-    background-color: #0056b3;
-}
-
-.btn-secondary {
-    background-color: #6c757d;
-    color: white;
-}
-
-.btn-secondary:hover {
-    background-color: #545b62;
-}
-
-.btn-outline {
-    background-color: transparent;
-    color: #007bff;
-    border: 1px solid #007bff;
-}
-
-.btn-outline:hover {
-    background-color: #007bff;
-    color: white;
-}
-
-.success-message {
-    background-color: #d4edda;
-    color: #155724;
-    padding: 15px;
-    border-radius: 4px;
-    margin: 20px 0;
-    border: 1px solid #c3e6cb;
-}
-
-.error-message {
-    background-color: #f8d7da;
-    color: #721c24;
-    padding: 15px;
-    border-radius: 4px;
-    margin: 20px 0;
-    border: 1px solid #f5c6cb;
-}
-
-.preview-section {
-    margin-top: 30px;
-    padding: 20px;
-    background-color:
-        #f8f9fa;
-    border-radius: 4px;
-    border-left: 4px solid #007bff;
-}
-
-.preview-section h3 {
-    margin-top: 0;
-    color: #333;
-}
-
-.preview-data {
-    background: white;
-    padding: 15px;
-    border-radius: 4px;
-    font-family: 'Courier
-New', monospace; font-size: 12px; white-space: pre-wrap; max-height: 300px;
-overflow-y: auto;
-    border: 1px solid #ddd;
-}
-</style>
-
-<script>
-
-    function updatePreview() {
-        const userData = collectFormData();
-        document.getElementById("data-preview").textContent =
-        JSON.stringify(userData, null, 2);
-    }
-
-    function collectFormData() {
-        const userData = {
-            name: document.getElementById("name").value || "",
-            email: document.getElementById("email").value || "",
-            phone: document.getElementById("phone").value || "",
-            company: document.getElementById("company").value || "",
-            position: document.getElementById("position").value || "",
-            skills: document
-            .getElementById("skills")
-            .value.split("\n")
-            .map((s) => s.trim())
-            .filter(Boolean)
-        };
-
-        return userData;
-    }
-
-
-    async function saveUserData() {
-
-        const userData = collectFormData();
-
-        await fetch("/api/save-user-data", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(userData),
-        });
-    }
-
-
-</script>
