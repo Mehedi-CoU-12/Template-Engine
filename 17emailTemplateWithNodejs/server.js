@@ -21,6 +21,59 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static("public"));
 
+//save template
+app.post("/api/save-template", (req, res) => {
+    const { templateData } = req.body;
+    const fileName = `template_${Date.now()}.json`;
+    const filePath = path.join(__dirname, "templates", fileName);
+
+    // Create templates directory if it doesn't exist
+    if (!fs.existsSync(path.join(__dirname, "templates"))) {
+        console.log("making directory");
+        fs.mkdirSync(path.join(__dirname, "templates"));
+    }
+
+    fs.writeFileSync(filePath, JSON.stringify(templateData, null, 2));
+
+    res.json({
+        success: true,
+        message: "Template saved successfully",
+        fileName: fileName,
+    });
+});
+
+// api endpoint to load template
+app.get("/api/load-template/:filename", (req, res) => {
+    const filePath = path.join(__dirname, "templates", req.params.filename);
+
+    if (fs.existsSync(filePath)) {
+        const templateData = JSON.parse(fs.readFileSync(filePath, "utf8"));
+        res.json(templateData);
+    } else {
+        res.status(404).json({ error: "Template not found" });
+    }
+});
+
+//api endpoint to get all templates
+app.get("/api/templates", (req, res) => {
+    const templatesDir = path.join(__dirname, "templates");
+
+    if (!fs.existsSync(templatesDir)) {
+        return res.json([]);
+    }
+
+    const files = fs
+        .readdirSync(templatesDir)
+        .filter((file) => file.endsWith(".json"))
+        .map((file) => ({
+            name: file,
+            created: fs.statSync(path.join(templatesDir, file)).mtime,
+        }));
+
+    res.json(files);
+});
+
+
 //serve index file
 app.get("/", (req, res) => {
     const body = viewTpls.index({ title: "Email Template Builder" });
