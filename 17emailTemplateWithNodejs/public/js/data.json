@@ -5,6 +5,10 @@
   "company": "appifylab",
   "position": "swe",
   "skills": [
-    "js"
+    "js",
+    "cpp",
+    "java",
+    "python",
+    "go"
   ]
 }

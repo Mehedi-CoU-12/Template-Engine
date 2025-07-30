@@ -1,48 +1,82 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DocumentCraft - Smart Template Editor</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.8/handlebars.min.js"></script>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-    <div class="header">
-        <h1>📝 DocumentCraft</h1>
-        <p>Smart Template Editor with Handlebars - Create dynamic documents with live preview</p>
-    </div>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>DocumentCraft - Smart Template Editor</title>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.8/handlebars.min.js"></script>
+        <link rel="stylesheet" href="style.css" />
+    </head>
+    <body>
+        <div class="header">
+            <h1>📝 DocumentCraft</h1>
+            <p>
+                Smart Template Editor with Handlebars - Create dynamic documents
+                with live preview
+            </p>
+        </div>
 
-    <div class="container">
-        <!-- Left Panel: Template & Data -->
-        <div class="left-panel panel">
-            <div class="panel-header">
-                <span>Template & Data</span>
-                <div class="toolbar">
-                    <button class="btn btn-primary btn-small" onclick="exportDocument()">Export HTML</button>
-                    <button class="btn btn-secondary btn-small" onclick="clearAll()">Clear All</button>
+        <div class="container">
+            <!-- Left Panel: Template & Data -->
+            <div class="left-panel panel">
+                <div class="panel-header">
+                    <span>Template & Data</span>
+                    <div class="toolbar">
+                        <button
+                            class="btn btn-primary btn-small"
+                            onclick="exportDocument()"
+                        >
+                            Export HTML
+                        </button>
+                        <button
+                            class="btn btn-secondary btn-small"
+                            onclick="clearAll()"
+                        >
+                            Clear All
+                        </button>
+                    </div>
                 </div>
-            </div>
-            <div class="panel-content">
-                <div class="tabs">
-                    <button class="tab active" onclick="switchTab('template')">Template</button>
-                    <button class="tab" onclick="switchTab('data')">Data</button>
-                    <button class="tab" onclick="switchTab('examples')">Examples</button>
-                </div>
-                
-                <div class="tab-content">
-                    <!-- Template Tab -->
-                    <div id="template-tab" class="tab-pane active">
-                        <div class="template-selector">
-                            <select id="templateSelect" onchange="loadTemplate()">
-                                <option value="blank">Blank Template</option>
-                                <option value="resume">Resume Template</option>
-                                <option value="cover-letter">Cover Letter</option>
-                                <option value="invoice">Invoice Template</option>
-                                <option value="business-letter">Business Letter</option>
-                            </select>
-                        </div>
-                        <textarea id="templateEditor" placeholder="Enter your Handlebars template here...
+                <div class="panel-content">
+                    <div class="tabs">
+                        <button
+                            class="tab active"
+                            onclick="switchTab('template')"
+                        >
+                            Template
+                        </button>
+                        <button class="tab" onclick="switchTab('data')">
+                            Data
+                        </button>
+                    </div>
+
+                    <div class="tab-content">
+                        <!-- Template Tab -->
+                        <div id="template-tab" class="tab-pane active">
+                            <div class="template-selector">
+                                <select
+                                    id="templateSelect"
+                                    onchange="loadTemplate()"
+                                >
+                                    <option value="blank">
+                                        Blank Template
+                                    </option>
+                                    <option value="resume">
+                                        Resume Template
+                                    </option>
+                                    <option value="cover_letter">
+                                        Cover Letter
+                                    </option>
+                                    <option value="invoice">
+                                        Invoice Template
+                                    </option>
+                                    <option value="business_letter">
+                                        Business Letter
+                                    </option>
+                                </select>
+                            </div>
+                            <textarea
+                                id="templateEditor"
+                                placeholder="Enter your Handlebars template here...
 
 Example:
 Hello {{name}}!
@@ -53,378 +87,99 @@ I work at {{company}}.
 
 {{#each skills}}
 - {{this}}
-{{/each}}"></textarea>
-                    </div>
-
-                    <!-- Data Tab -->
-                    <div id="data-tab" class="tab-pane">
-                        <div class="data-form">
-                            <div class="form-group">
-                                <label>Name</label>
-                                <input type="text" id="name" placeholder="Your full name" oninput="updatePreview()">
-                            </div>
-                            
-                            <div class="form-group">
-                                <label>Email</label>
-                                <input type="email" id="email" placeholder="your.email@example.com" oninput="updatePreview()">
-                            </div>
-                            
-                            <div class="form-group">
-                                <label>Phone</label>
-                                <input type="text" id="phone" placeholder="+1 (555) 123-4567" oninput="updatePreview()">
-                            </div>
-                            
-                            <div class="form-group">
-                                <label>Company</label>
-                                <input type="text" id="company" placeholder="Your company name" oninput="updatePreview()">
-                            </div>
-                            
-                            <div class="form-group">
-                                <label>Position</label>
-                                <input type="text" id="position" placeholder="Your job title" oninput="updatePreview()">
-                            </div>
-                            
-                            <div class="form-group">
-                                <label>Skills (one per line)</label>
-                                <textarea id="skills" rows="4" placeholder="JavaScript&#10;React&#10;Node.js&#10;Python" oninput="updatePreview()"></textarea>
-                            </div>
-                            
-                            <div class="form-group">
-                                <label>Custom JSON Data</label>
-                                <textarea id="customData" rows="6" placeholder='{"experiences": [{"title": "Developer", "company": "Tech Corp", "duration": "2020-2023"}]}' oninput="updatePreview()"></textarea>
-                            </div>
+{{/each}}"
+                            ></textarea>
                         </div>
-                    </div>
 
-                    <!-- Examples Tab -->
-                    <div id="examples-tab" class="tab-pane">
-                        <div style="padding: 1rem;">
-                            <h3>Handlebars Syntax Examples</h3>
-                            <div style="margin-bottom: 2rem;">
-                                <h4>Basic Variables:</h4>
-                                <code>{{name}}, {{email}}, {{company}}</code>
-                                
-                                <h4>Conditionals:</h4>
-                                <code>{{#if company}}I work at {{company}}{{/if}}</code>
-                                
-                                <h4>Loops:</h4>
-                                <code>{{#each skills}}- {{this}}{{/each}}</code>
-                                
-                                <h4>Custom Helpers:</h4>
-                                <code>{{formatDate date}}, {{currency amount}}</code>
-                                
-                                <h4>Unless:</h4>
-                                <code>{{#unless skills}}No skills listed{{/unless}}</code>
+                        <!-- Data Tab -->
+                        <div id="data-tab" class="tab-pane">
+                            <div class="data-form">
+                                <div class="form-group">
+                                    <label>Name</label>
+                                    <input
+                                        type="text"
+                                        id="name"
+                                        placeholder="Your full name"
+                                        oninput="updatePreview()"
+                                    />
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Email</label>
+                                    <input
+                                        type="email"
+                                        id="email"
+                                        placeholder="your.email@example.com"
+                                        oninput="updatePreview()"
+                                    />
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Phone</label>
+                                    <input
+                                        type="text"
+                                        id="phone"
+                                        placeholder="+1 (555) 123-4567"
+                                        oninput="updatePreview()"
+                                    />
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Company</label>
+                                    <input
+                                        type="text"
+                                        id="company"
+                                        placeholder="Your company name"
+                                        oninput="updatePreview()"
+                                    />
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Position</label>
+                                    <input
+                                        type="text"
+                                        id="position"
+                                        placeholder="Your job title"
+                                        oninput="updatePreview()"
+                                    />
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Skills (one per line)</label>
+                                    <textarea
+                                        id="skills"
+                                        rows="4"
+                                        placeholder="JavaScript&#10;React&#10;Node.js&#10;Python"
+                                        oninput="updatePreview()"
+                                    ></textarea>
+                                </div>
+
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
 
-        <!-- Right Panel: Preview -->
-        <div class="right-panel panel">
-            <div class="panel-header">
-                <span>Live Preview</span>
-                <span id="wordCount">0 words</span>
-            </div>
-            <div class="panel-content">
-                <div id="errorContainer"></div>
-                <div id="preview" class="preview-content">
-                    <p>👋 Welcome to DocumentCraft!</p>
-                    <p>Select a template or start typing in the template editor to see your document come to life.</p>
+            <!-- Right Panel: Preview -->
+            <div class="right-panel panel">
+                <div class="panel-header">
+                    <span>Live Preview</span>
+                    <span id="wordCount">0 words</span>
+                </div>
+                <div class="panel-content">
+                    <div id="errorContainer"></div>
+                    <div id="preview" class="preview-content">
+                        <p>👋 Welcome to DocumentCraft!</p>
+                        <p>
+                            Select a template or start typing in the template
+                            editor to see your document come to life.
+                        </p>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
 
-    <script>
-        // Register custom Handlebars helpers
-        Handlebars.registerHelper('formatDate', function(date) {
-            if (!date) return new Date().toLocaleDateString();
-            return new Date(date).toLocaleDateString();
-        });
-
-        Handlebars.registerHelper('currency', function(amount) {
-            if (!amount) return '$0.00';
-            return '$' + parseFloat(amount).toFixed(2);
-        });
-
-        Handlebars.registerHelper('uppercase', function(str) {
-            return str ? str.toUpperCase() : '';
-        });
-
-        Handlebars.registerHelper('multiply', function(a, b) {
-            return (a || 0) * (b || 0);
-        });
-
-        // Template definitions
-        const templates = {
-            blank: '',
-            resume: `# {{name}}
-{{email}} | {{phone}}
-{{#if company}}Currently at {{company}}{{/if}}
-
-## Professional Experience
-{{#each experiences}}
-**{{title}}** at {{company}} ({{startDate}} - {{endDate}})
-- {{description}}
-{{/each}}
-
-{{#if skills.length}}
-## Skills
-{{#each skills}}
-- {{this}}
-{{/each}}
-{{/if}}
-
-{{#if education}}
-## Education
-{{education}}
-{{/if}}`,
-
-            'cover-letter': `{{formatDate today}}
-
-{{#if recruiter.name}}{{recruiter.name}}{{else}}Dear Hiring Manager{{/if}},
-{{#if company}}{{company}}{{/if}}
-
-Dear {{#if recruiter.name}}{{recruiter.name}}{{else}}Hiring Manager{{/if}},
-
-I am writing to express my interest in the {{position}} position at {{company}}. With my background in {{#each skills}}{{this}}{{#unless @last}}, {{/unless}}{{/each}}, I believe I would be a valuable addition to your team.
-
-{{#if experience}}{{experience}}{{else}}My experience includes working with various technologies and delivering high-quality solutions.{{/if}}
-
-I would welcome the opportunity to discuss how my skills and enthusiasm can contribute to {{company}}'s continued success.
-
-Sincerely,
-{{name}}`,
-
-            invoice: `# INVOICE
-
-**Invoice #:** {{invoiceNumber}}
-**Date:** {{formatDate date}}
-**Due Date:** {{formatDate dueDate}}
-
----
-
-**Bill To:**
-{{client.name}}
-{{client.address}}
-{{client.email}}
-
-**From:**
-{{name}}
-{{email}}
-{{phone}}
-
----
-
-## Items
-{{#each items}}
-{{description}} - {{currency price}} x {{quantity}} = {{currency (multiply price quantity)}}
-{{/each}}
-
----
-**Subtotal:** {{currency subtotal}}
-{{#if tax}}**Tax:** {{currency tax}}{{/if}}
-**Total:** {{currency total}}
-
----
-Payment due within 30 days. Thank you for your business!`,
-
-            'business-letter': `{{formatDate today}}
-
-{{recipient.name}}
-{{recipient.title}}
-{{recipient.company}}
-{{recipient.address}}
-
-Dear {{recipient.name}},
-
-{{content}}
-
-{{#if closing}}{{closing}}{{else}}Best regards{{/if}},
-
-{{name}}
-{{title}}
-{{company}}
-{{email}}
-{{phone}}`
-        };
-
-        // Current active tab
-        let activeTab = 'template';
-
-        // Switch between tabs
-        function switchTab(tabName) {
-            // Remove active class from all tabs and panes
-            document.querySelectorAll('.tab').forEach(tab => tab.classList.remove('active'));
-            document.querySelectorAll('.tab-pane').forEach(pane => pane.classList.remove('active'));
-            
-            // Add active class to selected tab and pane
-            event.target.classList.add('active');
-            document.getElementById(tabName + '-tab').classList.add('active');
-            
-            activeTab = tabName;
-        }
-
-        // Load template from dropdown
-        function loadTemplate() {
-            const select = document.getElementById('templateSelect');
-            const template = templates[select.value] || '';
-            document.getElementById('templateEditor').value = template;
-            updatePreview();
-        }
-
-        // Get form data
-        function getFormData() {
-            const formData = {
-                name: document.getElementById('name').value,
-                email: document.getElementById('email').value,
-                phone: document.getElementById('phone').value,
-                company: document.getElementById('company').value,
-                position: document.getElementById('position').value,
-                today: new Date().toISOString(),
-                date: new Date().toISOString(),
-                skills: document.getElementById('skills').value.split('\n').filter(skill => skill.trim()),
-            };
-
-            // Try to parse custom JSON data
-            const customData = document.getElementById('customData').value.trim();
-            if (customData) {
-                try {
-                    const parsed = JSON.parse(customData);
-                    Object.assign(formData, parsed);
-                } catch (e) {
-                    console.warn('Invalid JSON in custom data:', e.message);
-                }
-            }
-
-            return formData;
-        }
-
-        // Update preview
-        function updatePreview() {
-            const templateSource = document.getElementById('templateEditor').value;
-            const data = getFormData();
-            const preview = document.getElementById('preview');
-            const errorContainer = document.getElementById('errorContainer');
-            
-            // Clear previous errors
-            errorContainer.innerHTML = '';
-            
-            if (!templateSource.trim()) {
-                preview.innerHTML = '<p style="color: #6b7280; font-style: italic;">Enter a template to see the preview...</p>';
-                updateWordCount('');
-                return;
-            }
-
-            try {
-                // Compile template
-                const template = Handlebars.compile(templateSource);
-                
-                // Render with data
-                const result = template(data);
-                
-                // Convert markdown-style formatting to HTML
-                let htmlResult = result
-                    .replace(/^# (.*$)/gm, '<h1>$1</h1>')
-                    .replace(/^## (.*$)/gm, '<h2>$1</h2>')
-                    .replace(/^### (.*$)/gm, '<h3>$1</h3>')
-                    .replace(/^\*\*(.*?)\*\*/gm, '<strong>$1</strong>')
-                    .replace(/^\- (.*$)/gm, '<li>$1</li>')
-                    .replace(/(<li>.*<\/li>)/gs, '<ul>$1</ul>')
-                    .replace(/\n\n/g, '</p><p>')
-                    .replace(/^(.*)$/gm, function(match) {
-                        if (match.match(/^<[h1-6]|<ul|<li|<strong/)) return match;
-                        if (match.trim() === '') return '';
-                        return match;
-                    });
-
-                // Wrap in paragraphs
-                if (htmlResult && !htmlResult.match(/^<[h1-6]|<ul/)) {
-                    htmlResult = '<p>' + htmlResult + '</p>';
-                }
-                
-                preview.innerHTML = htmlResult || '<p style="color: #6b7280; font-style: italic;">No content generated</p>';
-                updateWordCount(result);
-                
-            } catch (error) {
-                errorContainer.innerHTML = `<div class="error">Template Error: ${error.message}</div>`;
-                preview.innerHTML = '<p style="color: #ef4444;">Template compilation failed. Check the error above.</p>';
-                updateWordCount('');
-            }
-        }
-
-        // Update word count
-        function updateWordCount(text) {
-            const words = text.trim() ? text.trim().split(/\s+/).length : 0;
-            document.getElementById('wordCount').textContent = `${words} words`;
-        }
-
-        // Export document
-        function exportDocument() {
-            const preview = document.getElementById('preview');
-            const content = preview.innerHTML;
-            
-            const fullHtml = `<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="UTF-8">
-    <title>Document</title>
-    <style>
-        body { font-family: 'Times New Roman', serif; line-height: 1.6; max-width: 800px; margin: 0 auto; padding: 2rem; }
-        h1, h2, h3 { color: #1f2937; margin-bottom: 1rem; }
-        p { margin-bottom: 1rem; }
-        ul, ol { margin-bottom: 1rem; padding-left: 2rem; }
-    </style>
-</head>
-<body>
-    ${content}
-</body>
-</html>`;
-
-            const blob = new Blob([fullHtml], { type: 'text/html' });
-            const url = URL.createObjectURL(blob);
-            const a = document.createElement('a');
-            a.href = url;
-            a.download = 'document.html';
-            a.click();
-            URL.revokeObjectURL(url);
-        }
-
-        // Clear all data
-        function clearAll() {
-            if (confirm('Are you sure you want to clear all data?')) {
-                document.getElementById('templateEditor').value = '';
-                document.getElementById('name').value = '';
-                document.getElementById('email').value = '';
-                document.getElementById('phone').value = '';
-                document.getElementById('company').value = '';
-                document.getElementById('position').value = '';
-                document.getElementById('skills').value = '';
-                document.getElementById('customData').value = '';
-                document.getElementById('templateSelect').value = 'blank';
-                updatePreview();
-            }
-        }
-
-        // Set up event listeners
-        document.getElementById('templateEditor').addEventListener('input', updatePreview);
-
-        // Initialize with sample data
-        document.addEventListener('DOMContentLoaded', function() {
-            // Sample data
-            document.getElementById('name').value = 'John Doe';
-            document.getElementById('email').value = 'john.doe@example.com';
-            document.getElementById('phone').value = '+1 (555) 123-4567';
-            document.getElementById('company').value = 'Tech Innovations Inc.';
-            document.getElementById('position').value = 'Senior Developer';
-            document.getElementById('skills').value = 'JavaScript\nReact\nNode.js\nPython\nSQL';
-            
-            // Load default template
-            loadTemplate();
-        });
-    </script>
-</body>
+        <script src="script.js"></script>
+        <script src="template.js"></script>
+    </body>
 </html>

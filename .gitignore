@@ -4,3 +4,6 @@
 */cph
 */.cph
 *.env
+
+*/templates
+/views
