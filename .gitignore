@@ -5,5 +5,7 @@
 */.cph
 *.env
 
+/.vscode
+
 */templates
 /views

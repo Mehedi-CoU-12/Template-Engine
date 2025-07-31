@@ -461,46 +461,48 @@ class EmailTemplateBuilder {
     }
 }
 
+//form handlebars logic:
+function updatePreview() {
+    const userData = collectFormData();
+    document.getElementById("data-preview").textContent = JSON.stringify(
+        userData,
+        null,
+        2
+    );
+}
+
+function collectFormData() {
+    const userData = {
+        name: document.getElementById("name").value || "",
+        email: document.getElementById("email").value || "",
+        phone: document.getElementById("phone").value || "",
+        company: document.getElementById("company").value || "",
+        position: document.getElementById("position").value || "",
+        skills: document
+            .getElementById("skills")
+            .value.split("\n")
+            .map((s) => s.trim())
+            .filter(Boolean),
+    };
+
+    return userData;
+}
+
+async function saveUserData() {
+    const userData = collectFormData();
+
+    await fetch("/api/save-user-data", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(userData),
+    });
+}
+
 let builder;
-builder = new EmailTemplateBuilder();
+document.addEventListener("DOMContentLoaded", function () {
+    builder = new EmailTemplateBuilder();
+});
 
 function closeModal() {
     builder.closeModal();
 }
-
-
-//form handlebars logic:
-function updatePreview() {
-        const userData = collectFormData();
-        document.getElementById("data-preview").textContent =
-        JSON.stringify(userData, null, 2);
-    }
-
-    function collectFormData() {
-        const userData = {
-            name: document.getElementById("name").value || "",
-            email: document.getElementById("email").value || "",
-            phone: document.getElementById("phone").value || "",
-            company: document.getElementById("company").value || "",
-            position: document.getElementById("position").value || "",
-            skills: document
-            .getElementById("skills")
-            .value.split("\n")
-            .map((s) => s.trim())
-            .filter(Boolean)
-        };
-
-        return userData;
-    }
-
-
-    async function saveUserData() {
-
-        const userData = collectFormData();
-
-        await fetch("/api/save-user-data", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(userData),
-        });
-    }

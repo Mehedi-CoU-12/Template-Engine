@@ -73,7 +73,6 @@ app.get("/api/templates", (req, res) => {
     res.json(files);
 });
 
-
 //serve index file
 app.get("/", (req, res) => {
     const body = viewTpls.index({ title: "Email Template Builder" });
@@ -92,7 +91,6 @@ app.post("/api/save-user-data", (req, res) => {
     fs.writeFileSync(filePath, JSON.stringify(req.body, null, 2));
     res.json({ success: true, message: "User data saved", data: req.body });
 });
-
 
 app.listen(PORT, () => {
     console.log(`Server running on http://localhost:${PORT}`);
